@@ -43,9 +43,9 @@ get_header();
 	while ( $query->have_posts() ) {
 
 		$query->the_post();
-		$post_id  = (int) get_the_ID();
-		$flipbook = r3d_get_flipbook( $post_id );
-		$flipbook = r3d_array_merge_deep( $flipbook_global_options, is_array( $flipbook ) ? $flipbook : array() );
+		$r3d_post_id = (int) get_the_ID();
+		$flipbook    = r3d_get_flipbook( $r3d_post_id );
+		$flipbook    = r3d_array_merge_deep( $flipbook_global_options, is_array( $flipbook ) ? $flipbook : array() );
 
 		$show_flipbook = true;
 
@@ -63,7 +63,7 @@ get_header();
 
 		if ( $show_flipbook ) {
 
-			$shortcode = '[real3dflipbook id="' . esc_attr( $post_id ) . '" mode="lightbox"]';
+			$shortcode = '[real3dflipbook id="' . esc_attr( $r3d_post_id ) . '" mode="lightbox"]';
 
 			echo do_shortcode( $shortcode );
 		}

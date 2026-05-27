@@ -3,8 +3,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-$post_id  = get_the_ID();
-$flipbook = r3d_get_flipbook( $post_id );
+$r3d_edit_post_id = get_the_ID();
+$flipbook         = r3d_get_flipbook( $r3d_edit_post_id );
 if ( ! is_array( $flipbook ) ) {
 	$flipbook = array();
 }
@@ -46,8 +46,8 @@ function r3d_postbox( $r3d_postbox_title, $r3d_name ) {
 	wp_nonce_field( 'saving-real3d-flipbook', 'r3d_flipbook_nonce' );
 	?>
 
-	<input class="flipbook-option-field" type="hidden" name="id" value="<?php echo esc_attr( $post_id ); ?>">
-	<input class="flipbook-option-field" type="hidden" name="bookId" value="<?php echo esc_attr( $post_id ); ?>">
+	<input class="flipbook-option-field" type="hidden" name="id" value="<?php echo esc_attr( $r3d_edit_post_id ); ?>">
+	<input class="flipbook-option-field" type="hidden" name="bookId" value="<?php echo esc_attr( $r3d_edit_post_id ); ?>">
 
 
 	<div>

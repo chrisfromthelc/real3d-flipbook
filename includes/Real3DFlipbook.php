@@ -65,7 +65,7 @@ class Real3DFlipbook {
 		register_deactivation_hook( REAL3D_FLIPBOOK_FILE, array( $this, 'deactivation_hook' ) );
 	}
 
-	public function activation_hook( $network_wide ) {
+	public function activation_hook( $network_wide ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found -- required by register_activation_hook signature.
 		update_option( 'r3d_flush_rewrite_rules', true );
 	}
 

@@ -274,6 +274,7 @@ class R3D_Post_Type {
 			$taxonomy_obj  = get_taxonomy( $taxonomy );
 			$taxonomy_name = $taxonomy_obj->labels->name;
 
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- WP core admin list-table filter; no nonce available.
 			$selected = isset( $_GET[ $taxonomy ] ) ? intval( $_GET[ $taxonomy ] ) : '';
 
 			wp_dropdown_categories(
@@ -298,12 +299,14 @@ class R3D_Post_Type {
 
 		global $pagenow;
 
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended -- WP core admin list-table filter; no nonce available.
 		$post_type = isset( $_GET['post_type'] ) ? sanitize_text_field( wp_unslash( $_GET['post_type'] ) ) : '';
 		$taxonomy  = 'r3d_category';
 
 		if ( $pagenow === 'edit.php' && $post_type === 'r3d' && ! empty( $_GET[ $taxonomy ] ) ) {
 			$term_id = absint( $_GET[ $taxonomy ] );
-			$term    = get_term( $term_id, $taxonomy );
+			// phpcs:enable WordPress.Security.NonceVerification.Recommended
+			$term = get_term( $term_id, $taxonomy );
 
 			if ( $term && ! is_wp_error( $term ) ) {
 				$query->query_vars[ $taxonomy ] = $term->slug;

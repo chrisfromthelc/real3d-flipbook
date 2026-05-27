@@ -39,6 +39,9 @@ function r3d_get_flipbook( int $post_id ): ?array {
  * Looks up the old flipbook_id post meta, reads the corresponding
  * real3dflipbook_{id} option, writes it to r3d_flipbook_options post meta,
  * and cleans up the old data.
+ *
+ * @param int $post_id The post ID to migrate.
+ * @return array|null Migrated flipbook data, or null if no legacy data found.
  */
 function r3d_migrate_legacy_flipbook( int $post_id ): ?array {
 	$legacy_id = get_post_meta( $post_id, 'flipbook_id', true );

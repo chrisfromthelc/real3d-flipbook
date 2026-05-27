@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Plugin Name: Real3D Flipbook PDF Viewer PRO
  * Plugin URI:  https://github.com/chrisfromthelc/real3d-flipbook
  * Description: Premium Responsive Real 3D FlipBook & PDF Viewer
@@ -13,6 +12,8 @@
  * Domain Path: /languages
  * License:     GPL-2.0-or-later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ *
+ * @package Real3DFlipbook
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
