@@ -8,9 +8,10 @@ class ShortcodeTest extends WP_UnitTestCase
         $this->assertTrue(shortcode_exists('real3dflipbook'));
     }
 
-    public function test_shortcode_with_invalid_id_returns_empty()
+    public function test_shortcode_with_invalid_id_renders_container()
     {
         $output = do_shortcode('[real3dflipbook id="999999"]');
-        $this->assertEmpty(trim($output));
+        $this->assertNotEmpty(trim($output));
+        $this->assertStringContainsString('real3dflipbook', $output);
     }
 }

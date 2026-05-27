@@ -54,8 +54,12 @@ global.wp = {
     _n: (s, p, n) => (n === 1 ? s : p),
     sprintf: (fmt) => fmt,
   },
-  element: { createElement: function () {}, Fragment: "Fragment" },
-  blocks: { registerBlockType: jest.fn() },
+  element: {
+    createElement: function () {},
+    Fragment: "Fragment",
+    RawHTML: "RawHTML",
+  },
+  blocks: { registerBlockType: jest.fn(), Editable: function () {} },
   blockEditor: {
     InspectorControls: function () {},
     MediaUpload: function () {},
@@ -64,12 +68,15 @@ global.wp = {
   components: {
     ServerSideRender: function () {},
     Button: function () {},
+    Dashicon: function () {},
+    IconButton: function () {},
     TextControl: function () {},
     SelectControl: function () {},
     RadioControl: function () {},
     PanelBody: function () {},
     Placeholder: function () {},
     Disabled: function () {},
+    Toolbar: function () {},
   },
 };
 

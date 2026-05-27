@@ -3,6 +3,12 @@
 class SanitizationTest extends WP_UnitTestCase
 {
 
+    public static function set_up_before_class()
+    {
+        parent::set_up_before_class();
+        require_once dirname(__DIR__, 2) . '/includes/plugin-admin.php';
+    }
+
     public function test_r3d_sanitize_array_sanitizes_strings()
     {
         $input  = array( 'key' => '<script>alert(1)</script>' );
