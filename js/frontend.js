@@ -8,7 +8,7 @@ window.addEventListener("DOMContentLoaded", function () {
   function findIncludedLinks(withClass) {
     if (withClass) {
       return document.querySelectorAll(
-        `.${withClass} a[href$=".pdf"], a.${withClass}[href$=".pdf"]`
+        `.${withClass} a[href$=".pdf"], a.${withClass}[href$=".pdf"]`,
       );
     } else {
       return document.querySelectorAll('a[href$=".pdf"]');
@@ -18,7 +18,7 @@ window.addEventListener("DOMContentLoaded", function () {
   function findExcludedLinks(withoutClass) {
     if (withoutClass) {
       return document.querySelectorAll(
-        `.${withoutClass} a[href$=".pdf"], a.${withoutClass}[href$=".pdf"]`
+        `.${withoutClass} a[href$=".pdf"], a.${withoutClass}[href$=".pdf"]`,
       );
     } else {
       return [];
@@ -32,7 +32,7 @@ window.addEventListener("DOMContentLoaded", function () {
   const excludedLinksSet = new Set(Array.from(excludedLinks));
 
   const pdfLinks = includedLinksArray.filter(
-    (link) => !excludedLinksSet.has(link)
+    (link) => !excludedLinksSet.has(link),
   );
 
   if (pdfLinks.length > 0) {
@@ -74,39 +74,26 @@ window.addEventListener("DOMContentLoaded", function () {
     options.flipbookSrc = rootFolder + "js/flipbook.min.js";
     options.cMapUrl = rootFolder + "assets/cmaps/";
 
-    
-    var a = options.s,
-      b = 0;
-    if (!a) {
-      options.logoImg = rootFolder + "assets/images/logo_dark.png";
-      options.logoUrl = "https://real3dflipbook.com";
-      options.logoCSS =
-        "position:absolute;width:200px;margin:20px;top:0;right:0;";
-      options.logo = true;
-      b = 1;
-    }
-    
-
     if (window.FLIPBOOK) {
       pdfLinks.forEach((link, index) => createFlipbook(link, index, options));
     } else {
       Promise.all([
         loadScript(
-          rootFolder + "js/flipbook.min.js?ver=" + r3d_frontend.version
+          rootFolder + "js/flipbook.min.js?ver=" + r3d_frontend.version,
         ),
         loadCSS(
-          rootFolder + "css/flipbook.min.css?ver=" + r3d_frontend.version
+          rootFolder + "css/flipbook.min.css?ver=" + r3d_frontend.version,
         ),
       ])
         .then(() => {
           pdfLinks.forEach((link, index) =>
-            createFlipbook(link, index + 1, options)
+            createFlipbook(link, index + 1, options),
           );
         })
         .catch((error) => {
           console.error(
             "An error occurred while loading the resources:",
-            error
+            error,
           );
         });
     }

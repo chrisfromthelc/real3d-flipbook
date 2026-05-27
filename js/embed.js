@@ -71,15 +71,6 @@
         o_global = decode(o_global);
         o.s = s;
 
-        var a = o.s;
-        if (!a) {
-          o.logoImg = o.rootFolder + "assets/images/logo_dark.png";
-          o.logoUrl = "https://real3dflipbook.com";
-          o.logoCSS =
-            "position:absolute;width:200px;margin:20px;top:0;right:0;";
-          o.logo = true;
-        }
-
         if (o.pages) {
           if (!Array.isArray(o.pages)) {
             var pages = [];
