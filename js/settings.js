@@ -1017,7 +1017,7 @@
         val = options[name];
       }
 
-      if (typeof val == "strings") val = r3d_stripslashes(val);
+      if (typeof val == "string") val = r3d_stripslashes(val);
 
       var table = $("#flipbook-" + section + "-options");
       var tableBody = table.find("tbody");

@@ -359,7 +359,6 @@ FLIPBOOK.Main = class {
         responsiveViewRatio: 1,
         responsiveViewTreshold: 768,
         minimalView: true,
-        responsiveViewRatio: 1,
         minimalViewBreakpoint: 600,
         responsiveContainer: true,
         minPixelRatio: 1,
@@ -2895,9 +2894,6 @@ FLIPBOOK.Main = class {
 
         this.tocCreated = false;
 
-        if (!this.options.pdfMode) {
-        }
-
         this.createMenu();
 
         if (!this.options.sound) this.toggleSound(false);
@@ -3934,7 +3930,6 @@ FLIPBOOK.Main = class {
 
             if (!zooming && !pinching && !textSelect) {
                 self.Book.onSwipe(e, phase, distanceX, distanceY, duration, fingerCount);
-            } else {
             }
             zooming = false;
 
@@ -5230,7 +5225,7 @@ FLIPBOOK.Main = class {
 
             sideMenus.forEach(function (element) {
                 for (var property in sideMenuCss) {
-                    if (sideMenuCss.hasOwnProperty(property)) {
+                    if (Object.prototype.hasOwnProperty.call(sideMenuCss, property)) {
                         element.style[property] = sideMenuCss[property];
                     }
                 }

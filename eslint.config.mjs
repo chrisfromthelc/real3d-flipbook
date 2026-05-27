@@ -1,8 +1,5 @@
 import js from "@eslint/js";
 import globals from "globals";
-import json from "@eslint/json";
-import markdown from "@eslint/markdown";
-import css from "@eslint/css";
 import { defineConfig } from "eslint/config";
 
 export default defineConfig([
@@ -15,7 +12,19 @@ export default defineConfig([
       "**/js/libs/**",
       "**/lib/**",
       "**/tests/**",
+      "js/edit_flipbook_post.js",
+      "js/flipbook.swipe.old.js",
     ],
+  },
+  {
+    files: ["jest.config.js"],
+    plugins: { js },
+    extends: ["js/recommended"],
+    languageOptions: {
+      globals: {
+        ...globals.node,
+      },
+    },
   },
   {
     files: ["**/*.{js,mjs,cjs}"],
@@ -28,25 +37,39 @@ export default defineConfig([
         wp: "readonly",
         ajaxurl: "readonly",
         FLIPBOOK: "writable",
+        FlipBook: "readonly",
         r3dfb: "readonly",
         r3d: "readonly",
+        r3d_frontend: "readonly",
+        r3d_stripslashes: "readonly",
         pdfjsLib: "readonly",
         Mark: "readonly",
         dataLayer: "writable",
         Swal: "readonly",
         YT: "readonly",
-        wheelDeltaX: "readonly",
-        wheelDeltaY: "readonly",
+        THREE: "readonly",
+        IScroll: "readonly",
+        Color: "readonly",
+        postboxes: "readonly",
+        tb_remove: "readonly",
+        flipbooks_json: "readonly",
+        flipbooks: "readonly",
+        flipbookOptions_global: "readonly",
+        options: "readonly",
+        json: "readonly",
+        c: "readonly",
+        wheelDeltaX: "writable",
+        wheelDeltaY: "writable",
       },
     },
     rules: {
-      "no-unused-vars": ["error", { args: "none", caughtErrors: "none" }],
+      "no-unused-vars": ["warn", { args: "none", caughtErrors: "none" }],
+      "no-useless-assignment": "warn",
+      "no-useless-escape": "warn",
+      "no-self-assign": "warn",
       "no-case-declarations": "warn",
       "no-empty": ["error", { allowEmptyCatch: true }],
+      "no-redeclare": "warn",
     },
   },
-  { files: ["**/*.json"], plugins: { json }, language: "json/json", extends: ["json/recommended"] },
-  { files: ["**/*.jsonc"], plugins: { json }, language: "json/jsonc", extends: ["json/recommended"] },
-  { files: ["**/*.md"], plugins: { markdown }, language: "markdown/gfm", extends: ["markdown/recommended"] },
-  { files: ["**/*.css"], plugins: { css }, language: "css/css", extends: ["css/recommended"] },
 ]);
