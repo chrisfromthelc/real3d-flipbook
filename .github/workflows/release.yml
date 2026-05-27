@@ -1,0 +1,41 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - run: npm ci
+      - run: npm run build
+
+      - name: Package plugin
+        run: |
+          mkdir -p dist/real3d-flipbook
+          rsync -a --exclude='node_modules' --exclude='vendor' --exclude='tests' \
+            --exclude='docs' --exclude='.github' --exclude='.git' \
+            --exclude='phpunit.xml.dist' --exclude='phpcs.xml' \
+            --exclude='eslint.config.mjs' --exclude='jest.config.js' \
+            --exclude='package.json' --exclude='package-lock.json' \
+            --exclude='composer.json' --exclude='composer.lock' \
+            --exclude='.gitignore' --exclude='.DS_Store' \
+            . dist/real3d-flipbook/
+          cd dist && zip -r real3d-flipbook.zip real3d-flipbook/
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: dist/real3d-flipbook.zip
+          generate_release_notes: true
