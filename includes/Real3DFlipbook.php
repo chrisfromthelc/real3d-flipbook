@@ -2101,6 +2101,10 @@ if ( ! function_exists( 'r3d_array_merge_deep' ) ) {
 	function r3d_array_merge_deep( $array1, $array2 ) {
 		$merged = $array1;
 
+		if ( ! is_array( $array2 ) ) {
+			return $merged;
+		}
+
 		foreach ( $array2 as $key => &$value ) {
 			if ( is_array( $value ) && isset( $merged[ $key ] ) && is_array( $merged[ $key ] ) ) {
 				$merged[ $key ] = r3d_array_merge_deep( $merged[ $key ], $value );
