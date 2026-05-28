@@ -3901,7 +3901,7 @@ FLIPBOOK.Main = class {
 
             if (phase == 'end') {
                 if (!self.options.doubleClickZoomDisabled) {
-                    if (!self.clickTimer && e.touches) {
+                    if (!self.clickTimer) {
                         self.clickTimer = setTimeout(function () {
                             delete self.clickTimer;
                         }, 300);
